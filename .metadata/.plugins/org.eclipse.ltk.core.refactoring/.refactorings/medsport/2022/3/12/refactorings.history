@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ObjectNotFoundException.java&apos; to &apos;com.matheus.demo.service.exception.ObjectNotFoundException.java&apos;&#x0D;&#x0A;- Original project: &apos;medsport&apos;&#x0D;&#x0A;- Destination element: &apos;com.matheus.demo.service.exception.ObjectNotFoundException.java&apos;&#x0D;&#x0A;- Original element: &apos;com.matheus.demo.service.exception.ObjectNotFoundException.java&apos;" description="Copy compilation unit" destination="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.matheus.demo.service.exception{ObjectNotFoundException.java" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.matheus.demo.service.exception{ObjectNotFoundException.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1647301575267" units="1" version="1.0"/>
+</session>

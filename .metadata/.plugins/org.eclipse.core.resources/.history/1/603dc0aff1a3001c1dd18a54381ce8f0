@@ -1,0 +1,44 @@
+package com.matheus.demo.service;
+
+import java.util.Optional;
+
+import org.hibernate.ObjectNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.matheus.demo.domain.Paciente;
+import com.matheus.demo.repository.PacienteRepository;
+
+@Service
+
+public class PacienteService {
+
+	@Autowired
+	private PacienteRepository repo;
+	
+	public Paciente find(Integer id) {
+		Optional<Paciente> obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ",Tipo: " + Paciente.class.getName(),null));
+	}
+	
+	public Paciente insert (Paciente obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Paciente update(Paciente obj) {
+		find(obj.getId());
+		return repo.save(obj);
+	}
+	public void  delete(Integer id) {
+		find(id);
+		try {
+			
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e ) {
+		throw  new DatalIntegrityExcepition("Não e possivel excluir uma categoria que possui produtos");
+		}
+	
+	}
+
+}
