@@ -1,5 +1,0 @@
-package com.matheus.demo.service.exception;
-
-public class ObjectNotFoundException {
-
-}

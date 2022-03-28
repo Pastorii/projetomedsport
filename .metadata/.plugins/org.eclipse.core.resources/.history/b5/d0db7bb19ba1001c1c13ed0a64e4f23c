@@ -1,5 +1,0 @@
-package com.matheus.demo.resource.exception;
-
-public class StandardError {
-
-}

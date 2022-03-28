@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Paciente implements Serializable{
@@ -23,6 +24,17 @@ public class Paciente implements Serializable{
 	private String cpf;
 	private Integer telefone;
 	
+	@OneToOne
+	private Endereco end;
+	
+	public Endereco getEnd() {
+		return end;
+	}
+
+	public void setEnd(Endereco end) {
+		this.end = end;
+	}
+
 	public Paciente() {
 		super();
 	}

@@ -3,10 +3,12 @@ package com.matheus.demo.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
+@Entity
 public class Endereco implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -18,6 +20,17 @@ public class Endereco implements Serializable{
 	private String complemento;
 	private String bairro;
 	private String cep;
+	
+	@ManyToOne
+	private Cidade cid;
+	
+	
+	public Cidade getCid() {
+		return cid;
+	}
+	public void setCid(Cidade cid) {
+		this.cid = cid;
+	}
 	public Endereco() {
 		super();
 	}

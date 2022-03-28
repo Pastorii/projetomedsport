@@ -3,10 +3,11 @@ package com.matheus.demo.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+@Entity
 public class Estado implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
