@@ -8,7 +8,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.matheus.demo.domain.Cidade;
+import com.matheus.demo.domain.Endereco;
+import com.matheus.demo.domain.Estado;
+import com.matheus.demo.domain.Funcionario;
 import com.matheus.demo.domain.Paciente;
+import com.matheus.demo.repository.CidadeRepository;
+import com.matheus.demo.repository.EnderecoRepository;
+import com.matheus.demo.repository.EstadoRepository;
+import com.matheus.demo.repository.FuncionarioRepository;
 import com.matheus.demo.repository.PacienteRepository;
 
 @SpringBootApplication
@@ -17,6 +25,19 @@ public class MedsportApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PacienteRepository pacienteRepository;
+	
+	@Autowired
+	private FuncionarioRepository funcionarioRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(MedsportApplication.class, args);
 	}
@@ -27,9 +48,28 @@ public class MedsportApplication implements CommandLineRunner {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		Paciente pa = new Paciente(null, "matheus", sdf.parse("07/03/1999 00:00"), "matheuspastoridev@gmail.com", "44548701259", 1);
+		
+		Estado est = new Estado(null, "Paraná");
+		
+		Cidade cid = new Cidade(null, "Arapongas",est);
+		
+		est.getCidades().addAll(Arrays.asList(cid));
+		
+		Endereco end = new Endereco(null, "Tiriba Fogo", "304", "Atras da Colibri Moveis", "Alto da Boa Vista", "86706763");
+		
+		Funcionario fun = new Funcionario(null, "Romario", sdf.parse("01/05/1997 00:30"), "romario@gmail.com", "10024018015", null); 
+		
+		Paciente pa = new Paciente(null, "matheus", sdf.parse("07/03/1999 00:00"), "matheuspastoridev@gmail.com", "44548701259", 1,end);
 		
 		pacienteRepository.saveAll(Arrays.asList(pa));
+		
+		estadoRepository.saveAll(Arrays.asList(est));
+		
+		funcionarioRepository.saveAll(Arrays.asList(fun));
+		
+		cidadeRepository.saveAll(Arrays.asList(cid));
+		
+		enderecoRepository.saveAll(Arrays.asList(end));
 	}
 
 }

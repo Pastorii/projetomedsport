@@ -18,21 +18,22 @@ public class Cidade implements Serializable{
 		private String nome;
 		
 		@ManyToOne
-		private Estado est;
+		private Estado estado;
 		
 		public Estado getEst() {
-			return est;
+			return estado;
 		}
 		public void setEst(Estado est) {
-			this.est = est;
+			this.estado = est;
 		}
 		public Cidade() {
 			super();
 		}
-		public Cidade(Integer id, String nome) {
+		public Cidade(Integer id, String nome,Estado estado) {
 			super();
 			this.id = id;
 			this.nome = nome;
+			this.estado = estado;
 		}
 		public Integer getId() {
 			return id;

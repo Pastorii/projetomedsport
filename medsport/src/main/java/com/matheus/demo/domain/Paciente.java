@@ -1,7 +1,9 @@
 package com.matheus.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -25,21 +27,16 @@ public class Paciente implements Serializable{
 	private Integer telefone;
 	
 	@OneToOne
-	private Endereco end;
 	
-	public Endereco getEnd() {
-		return end;
-	}
+	private List<Endereco> endereco = new ArrayList<>();
+	
 
-	public void setEnd(Endereco end) {
-		this.end = end;
-	}
-
+	
 	public Paciente() {
 		super();
 	}
 
-	public Paciente(Integer id, String nome, Date dataNasc, String email, String cpf, Integer telefone) {
+	public Paciente(Integer id, String nome, Date dataNasc, String email, String cpf, Integer telefone, Endereco end) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -47,6 +44,7 @@ public class Paciente implements Serializable{
 		this.email = email;
 		this.cpf = cpf;
 		this.telefone = telefone;
+		this.endereco=endereco;
 	}
 
 	public Integer getId() {
@@ -112,6 +110,14 @@ public class Paciente implements Serializable{
 			return false;
 		Paciente other = (Paciente) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public List<Endereco> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
 	}
 	
 	
