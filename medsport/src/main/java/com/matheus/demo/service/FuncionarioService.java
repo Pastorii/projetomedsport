@@ -1,5 +1,6 @@
 package com.matheus.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.matheus.demo.domain.Funcionario;
+import com.matheus.demo.domain.dto.FuncionarioDTO;
 import com.matheus.demo.repository.FuncionarioRepository;
 import com.matheus.demo.service.exception.DataIntegrityViolationException;
 
@@ -41,5 +43,18 @@ public class FuncionarioService {
 		}
 	
 	}
+	
+	
+
+	public List<Funcionario> findAll() {
+
+		return repo.findAll();
+	}
+	
+	public Funcionario fromDTO(FuncionarioDTO objDto) {
+		return new Funcionario(objDto.getId(), objDto.getNome(),objDto.getDataNasc(),null,null,objDto.getTelefone());
+	}
+	
+
 
 }

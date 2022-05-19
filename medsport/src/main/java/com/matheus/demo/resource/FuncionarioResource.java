@@ -1,6 +1,8 @@
 package com.matheus.demo.resource;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.matheus.demo.domain.Funcionario;
+import com.matheus.demo.domain.dto.FuncionarioDTO;
 import com.matheus.demo.service.FuncionarioService;
 
 @RestController
@@ -50,5 +53,13 @@ public class FuncionarioResource {
 		return ResponseEntity.noContent().build();
 		
 		
+	}
+	
+	@RequestMapping( method = RequestMethod.GET)
+	public ResponseEntity<List<FuncionarioDTO>> findPage() {
+				List<Funcionario> list = service.findAll();
+				List<FuncionarioDTO> listDto = list.stream().map(obj -> new FuncionarioDTO(obj)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(listDto);
 	}
 }

@@ -52,24 +52,27 @@ public class MedsportApplication implements CommandLineRunner {
 		Estado est = new Estado(null, "Paraná");
 		
 		Cidade cid = new Cidade(null, "Arapongas",est);
-		
 		est.getCidades().addAll(Arrays.asList(cid));
 		
-		Endereco end = new Endereco(null, "Tiriba Fogo", "304", "Atras da Colibri Moveis", "Alto da Boa Vista", "86706763");
+		estadoRepository.saveAll(Arrays.asList(est));
+		cidadeRepository.saveAll(Arrays.asList(cid));
+		
+		Paciente pa = new Paciente(null, "silvao", sdf.parse("01/05/1998 00:00"), "silvao@gmail.com","123457890" , null);
+		Endereco end = new Endereco(null, "Tiriba Fogo", "304", "Atras da Colibri Moveis", "Alto da Boa Vista", "86706763",pa);
+		pa.getEndereco().addAll(Arrays.asList(end));
+		
+		pacienteRepository.saveAll(Arrays.asList(pa));
+		enderecoRepository.saveAll(Arrays.asList(end));
 		
 		Funcionario fun = new Funcionario(null, "Romario", sdf.parse("01/05/1997 00:30"), "romario@gmail.com", "10024018015", null); 
 		
-		Paciente pa = new Paciente(null, "matheus", sdf.parse("07/03/1999 00:00"), "matheuspastoridev@gmail.com", "44548701259", 1,end);
+	
 		
-		pacienteRepository.saveAll(Arrays.asList(pa));
 		
-		estadoRepository.saveAll(Arrays.asList(est));
 		
 		funcionarioRepository.saveAll(Arrays.asList(fun));
 		
-		cidadeRepository.saveAll(Arrays.asList(cid));
 		
-		enderecoRepository.saveAll(Arrays.asList(end));
 	}
 
 }

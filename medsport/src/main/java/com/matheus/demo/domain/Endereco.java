@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Endereco implements Serializable{
 
@@ -21,9 +23,11 @@ public class Endereco implements Serializable{
 	private String bairro;
 	private String cep;
 	
+	
 	@ManyToOne
 	private Cidade cid;
 	
+	@JsonIgnore
 	@ManyToOne
 	private Paciente paciente;
 	
@@ -37,7 +41,7 @@ public class Endereco implements Serializable{
 	public Endereco() {
 		super();
 	}
-	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,Paciente paciente) {
+	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Paciente paciente) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
@@ -45,7 +49,8 @@ public class Endereco implements Serializable{
 		this.complemento = complemento;
 		this.bairro = bairro;
 		this.cep = cep;
-		this.paciente=paciente;
+		this.paciente = paciente;
+		
 	}
 	public Integer getId() {
 		return id;
@@ -86,6 +91,9 @@ public class Endereco implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -107,7 +115,7 @@ public class Endereco implements Serializable{
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
-	
+
 	
 	
 }

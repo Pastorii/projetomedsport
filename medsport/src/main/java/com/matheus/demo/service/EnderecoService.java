@@ -1,5 +1,6 @@
 package com.matheus.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.matheus.demo.domain.Endereco;
+import com.matheus.demo.domain.dto.EnderecoDTO;
 import com.matheus.demo.repository.EnderecoRepository;
 import com.matheus.demo.service.exception.DataIntegrityViolationException;
 
@@ -41,5 +43,13 @@ public class EnderecoService {
 		}
 	
 	}
+	
+	public List<Endereco> findAll() {
 
+		return repo.findAll();
+	}
+	
+	public Endereco fromDTO(EnderecoDTO objDto) {
+		return new Endereco(objDto.getId(), objDto.getLogradouro(),null,null,objDto.getBairro(),objDto.getCep(),null);
+	}
 }

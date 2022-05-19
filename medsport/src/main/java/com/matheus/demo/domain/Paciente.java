@@ -6,11 +6,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Paciente implements Serializable{
@@ -26,9 +27,8 @@ public class Paciente implements Serializable{
 	private String cpf;
 	private Integer telefone;
 	
-	@OneToOne
-	
-	private List<Endereco> endereco = new ArrayList<>();
+	@OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+	private List<Endereco> endereco = new ArrayList<>() ; 
 	
 
 	
@@ -36,7 +36,7 @@ public class Paciente implements Serializable{
 		super();
 	}
 
-	public Paciente(Integer id, String nome, Date dataNasc, String email, String cpf, Integer telefone, Endereco end) {
+	public Paciente(Integer id, String nome, Date dataNasc, String email, String cpf, Integer telefone) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -44,7 +44,7 @@ public class Paciente implements Serializable{
 		this.email = email;
 		this.cpf = cpf;
 		this.telefone = telefone;
-		this.endereco=endereco;
+		
 	}
 
 	public Integer getId() {
@@ -119,6 +119,8 @@ public class Paciente implements Serializable{
 	public void setEndereco(List<Endereco> endereco) {
 		this.endereco = endereco;
 	}
+
+
 	
 	
 	
